@@ -18,6 +18,12 @@ spec:
       nodeSelector:
         nodegroup-type: "managed-backend-workloads"
       containers:
+      - name: aws-cli
+        image: amazon/aws-cli:latest
+        command:
+          - sleep
+          - "3600"
+        imagePullPolicy: IfNotPresent
       - name: demoapp-service
         image: kustomization-eks-repository
         imagePullPolicy: Always
