@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: demoapp-service-svc
   labels:
-    app: demoapp-service-service
+    app: demoapp-service
   annotations:
     alb.ingress.kubernetes.io/healthcheck-path: /health-check/
 spec:
@@ -14,4 +14,4 @@ spec:
   selector:
     app: demoapp-service
   type:
-    NodePort
+    LoadBalancer

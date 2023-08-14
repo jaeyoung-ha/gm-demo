@@ -14,7 +14,7 @@ spec:
       labels:
         app: demoapp-service
     spec:
-      serviceAccountName: custom-aws-eks-s3-controller
+      serviceAccountName: custom-eks-sa
       nodeSelector:
         nodegroup-type: "managed-backend-workloads"
       containers:
