@@ -1,0 +1,13 @@
+server:
+  port: 8100
+
+spring:
+  application:
+    name: gm-demo
+
+s3:
+  bucket-path: "s3-gm-bucket-2023"
+
+logging:
+  level:
+    com.aws.gmdemo: DEBUG
