@@ -17,7 +17,7 @@ env:
   APP_NAME: gm-demo       # Application 이름. Image TAG Prefix로 사용 됨
   AWS_REGION: us-east-1   # ap-northeast-2      # AWS EKS & ECR이 위치한 AWS Region
   DEPLOYMENT_NAME: demoapp-deployment      # Kubernetes Deployment 명
-  JAVA_VERSION : 17       # JAVA REF: https://github.com/marketplace/actions/setup-java-jdk
+  JAVA_VERSION : 8       # JAVA REF: https://github.com/marketplace/actions/setup-java-jdk
   JAVA_DISTRIBUTION : adopt       # JAVA REF 링크를 참고하여 필요 Java 버전 및 Distribution을 설정
   YAML_ENV : yaml/dev
 
