@@ -9,6 +9,11 @@ import java.util.Random;
 
 public class DtoUtil {
 
+    public static ProductEntity convertToReserveEntity(ProductDto productDto) {
+        ModelMapper mapper = new CustomModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        return mapper.map(productDto, ProductEntity.class);
+    }
     public static ProductDto convertToReserveDto(ProductEntity productEntity) {
         ModelMapper mapper = new CustomModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);

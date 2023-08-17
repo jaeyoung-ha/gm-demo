@@ -3,10 +3,13 @@ package com.aws.gmdemo;
 import com.aws.gmdemo.constants.StatusCodeConstants;
 import com.aws.gmdemo.dto.CommonReturnDto;
 import com.aws.gmdemo.dto.ProductDto;
+import com.aws.gmdemo.vo.RequestProduct;
 import com.aws.gmdemo.vo.ResponseGetInfo;
+import com.aws.gmdemo.vo.ResponseProduct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.util.TextUtils;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
@@ -67,6 +70,26 @@ public class Controller {
         }
 
         return new ResponseEntity<>(photoImg, headers, HttpStatus.OK);
+    }
+
+    @PutMapping("/addProduct")
+    public ResponseEntity<CommonReturnDto<ResponseProduct>> getProduct(@RequestBody RequestProduct productDetails) {
+
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+        ProductDto productDto = mapper.map(productDetails, ProductDto.class);
+        productService.createReserve(productDto);
+
+        ResponseProduct responseProduct = mapper.map(productDto, ResponseProduct.class);
+
+        return new ResponseEntity<>(
+                CommonReturnDto.<ResponseProduct>builder()
+                        .statusCode(TextUtils.isEmpty(productDto.getErrCode()) ? StatusCodeConstants.okCodeRequestSuccess : productDto.getErrCode())
+                        .statusMsg(TextUtils.isEmpty(productDto.getErrMsg()) ? StatusCodeConstants.okDescRequestSuccess : productDto.getErrMsg())
+                        .data(responseProduct)
+                        .build(),
+                HttpStatus.OK);
     }
 
     @GetMapping("/getProduct/{productId}")
