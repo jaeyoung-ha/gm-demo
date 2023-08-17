@@ -5,6 +5,14 @@ spring:
   application:
     name: gm-demo
 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    hikari:
+      minimum-idle: 50
+      maximum-pool-size: 50
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
 s3:
   bucket-path: "s3-gm-bucket-2023"
 

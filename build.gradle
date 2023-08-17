@@ -26,6 +26,14 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
     implementation 'com.amazonaws:aws-java-sdk:1.12.528'
     implementation 'com.amazonaws:aws-java-sdk-s3:1.12.528'
+
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.postgresql:postgresql'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.1.2'
+    implementation 'com.amazonaws:aws-java-sdk-secretsmanager'
+    implementation 'org.modelmapper:modelmapper:3.1.1'
+    implementation 'com.google.code.gson:gson:2.10'
+
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'

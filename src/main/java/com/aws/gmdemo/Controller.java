@@ -1,7 +1,12 @@
 package com.aws.gmdemo;
 
+import com.aws.gmdemo.constants.StatusCodeConstants;
+import com.aws.gmdemo.dto.CommonReturnDto;
+import com.aws.gmdemo.dto.ProductDto;
+import com.aws.gmdemo.vo.ResponseGetInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.util.TextUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +24,7 @@ import java.io.IOException;
 public class Controller {
     private Environment env;
 
+    ProductService productService;
     AmazonS3Helper amazonS3Helper;
 
     @Autowired
@@ -62,6 +68,22 @@ public class Controller {
 
         return new ResponseEntity<>(photoImg, headers, HttpStatus.OK);
     }
+
+    @GetMapping("/getProduct/{productId}")
+    public ResponseEntity<CommonReturnDto<ResponseGetInfo>> getProduct(@PathVariable("productId") String productId) {
+
+        ProductDto bookingDto = productService.getProductByProductId(productId);
+        ResponseGetInfo responseGetInfo = new ModelMapper().map(bookingDto, ResponseGetInfo.class);
+
+        return new ResponseEntity<>(
+                CommonReturnDto.<ResponseGetInfo>builder()
+                        .statusCode(TextUtils.isEmpty(bookingDto.getErrCode()) ? StatusCodeConstants.okCodeRequestSuccess : bookingDto.getErrCode())
+                        .statusMsg(TextUtils.isEmpty(bookingDto.getErrMsg()) ? StatusCodeConstants.okDescRequestSuccess : bookingDto.getErrMsg())
+                        .data(responseGetInfo)
+                        .build(),
+                HttpStatus.OK);
+    }
+
 
 
 }
