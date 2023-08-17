@@ -31,9 +31,10 @@ public class Controller {
     AmazonS3Helper amazonS3Helper;
 
     @Autowired
-    public Controller(Environment env, AmazonS3Helper amazonS3Helper) {
+    public Controller(Environment env, AmazonS3Helper amazonS3Helper, ProductService productService) {
         this.env = env;
         this.amazonS3Helper = amazonS3Helper;
+        this.productService = productService;
     }
 
     @GetMapping("/health-check")
@@ -72,7 +73,7 @@ public class Controller {
         return new ResponseEntity<>(photoImg, headers, HttpStatus.OK);
     }
 
-    @PutMapping("/addProduct")
+    @PostMapping("/addProduct")
     public ResponseEntity<CommonReturnDto<ResponseProduct>> getProduct(@RequestBody RequestProduct productDetails) {
 
         ModelMapper mapper = new ModelMapper();
