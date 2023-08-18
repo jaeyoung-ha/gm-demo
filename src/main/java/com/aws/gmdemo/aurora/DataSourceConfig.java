@@ -34,12 +34,11 @@ public class DataSourceConfig {
     private DbSecret getSecret() {
         String secretName = "rds!cluster-dbe2ba4d-ade9-45c6-8b5f-2962eee98532";
 
-
         AWSSecretsManager client = AWSSecretsManagerClientBuilder.standard().withRegion(Regions.US_EAST_1).build();
 
         String secret = "";
         GetSecretValueRequest getSecretValueRequest = new GetSecretValueRequest().withSecretId(secretName);
-        GetSecretValueResult getSecretValueResult = null;
+        GetSecretValueResult getSecretValueResult = null;  
 
         try {
             getSecretValueResult = client.getSecretValue(getSecretValueRequest);
