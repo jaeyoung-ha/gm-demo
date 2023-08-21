@@ -6,4 +6,4 @@ resources:
 images:
 - name: kustomization-eks-repository
   newName: 499176689708.dkr.ecr.us-east-1.amazonaws.com/gm-demo-ecr
-  newTag: DEV_demoapp_5122baba
+  newTag: DEV_demoapp_a822cf3c
