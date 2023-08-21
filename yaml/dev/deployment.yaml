@@ -5,7 +5,7 @@ metadata:
   labels:
     app: demoapp-service
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: demoapp-service
@@ -18,6 +18,10 @@ spec:
       nodeSelector:
         nodegroup-type: "managed-backend-workloads"
       containers:
+      - resources:
+        requests:
+          cpu: 3
+          memory: 4000Mi
       - name: demoapp-service
         image: kustomization-eks-repository
         imagePullPolicy: Always
