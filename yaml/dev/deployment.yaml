@@ -20,7 +20,7 @@ spec:
       containers:
       - resources:
         requests:
-          cpu: 3
+          cpu: 2
           memory: 4000Mi
       - name: demoapp-service
         image: kustomization-eks-repository
