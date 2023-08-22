@@ -1,12 +1,12 @@
 server:
   port: 8100
   tomcat:
-    basedir: /var/log/containers/
+    basedir: /var/log/
     accesslog:
       enabled: true
-      prefix: gm-demo.
-      file-date-format: yyyy-MM-dd
+      prefix: access_log.
       pattern: '%h %l %u %t %r %s %b'
+      directory: containers
 
 spring:
   application:
