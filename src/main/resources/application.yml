@@ -1,7 +1,7 @@
 server:
   port: 8100
   tomcat:
-    basedir: .
+    basedir: /var/log/containers/
     accesslog:
       enabled: true
       prefix: gm-demo.
