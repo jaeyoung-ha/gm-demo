@@ -1,8 +1,12 @@
 server:
   port: 8100
   tomcat:
+    basedir: .
     accesslog:
-      enabled=true
+      enabled: true
+      prefix: gm-demo.
+      file-date-format: yyyy-MM-dd
+      pattern: '%h %l %u %t %r %s %b'
 
 spring:
   application:
