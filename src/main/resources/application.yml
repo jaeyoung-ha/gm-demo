@@ -1,5 +1,8 @@
 server:
   port: 8100
+  tomcat:
+    accesslog:
+      enabled=true
 
 spring:
   application:
