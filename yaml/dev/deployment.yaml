@@ -18,14 +18,14 @@ spec:
       nodeSelector:
         nodegroup-type: "managed-backend-workloads"
       containers:
-      - resources:
-        requests:
-          cpu: 2
-          memory: 4000Mi
       - name: demoapp-service
         image: kustomization-eks-repository
         imagePullPolicy: Always
         ports:
         - containerPort: 8100
+        resources:
+          requests:
+            cpu: 1
+            memory: 4000Mi
       restartPolicy: Always
 
