@@ -27,5 +27,12 @@ spec:
           requests:
             cpu: 1
             memory: 4000Mi
+        volumeMounts:
+          - name: varlog
+            mountPath: /var/log/containers
+      volumes:
+        - name: varlog
+          hostPath:
+            path: /var/log/containers
       restartPolicy: Always
 
