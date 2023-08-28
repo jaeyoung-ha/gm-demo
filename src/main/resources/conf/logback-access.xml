@@ -6,13 +6,15 @@
     <property name="LOG_PATH_NAME" value="${LOG_DIR}/access_log_test.log" />
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH_NAME}</file>
+        <file>${LOG_PATH_NAME}.%d{yyyyMMdd}</file>
+<!--
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH_NAME}.%d{yyyyMMdd}</fileNamePattern>
             <maxHistory>1</maxHistory>
         </rollingPolicy>
+-->
         <encoder>
-            <pattern>%fullRequest%n%fullResponse</pattern>
+            <pattern>%t{yyyy-MM-dd HH:mm:ss}\t%a\t%r\t%s\t%i{Referer}\t%i{User-Agent}\t%D\t%I</pattern>
         </encoder>
     </appender>
 <!--    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
