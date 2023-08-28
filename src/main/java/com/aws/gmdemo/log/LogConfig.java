@@ -21,7 +21,8 @@ public class LogConfig {
             if (container instanceof TomcatServletWebServerFactory) {
                 ((TomcatServletWebServerFactory) container).addContextCustomizers((TomcatContextCustomizer) context -> {
                     LogbackValve valve = new LogbackValve();
-                    valve.setFilename(resourceLoader.getResource(ResourceLoader.CLASSPATH_URL_PREFIX + "logback-access.xml").getFilename());
+//                    valve.setFilename(resourceLoader.getResource(ResourceLoader.CLASSPATH_URL_PREFIX + "logback-access.xml").getFilename());
+                    valve.setFilename("src/main/resources/logback-access.xml");
                     context.getPipeline().addValve(valve);
                 });
             }
