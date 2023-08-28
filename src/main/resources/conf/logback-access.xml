@@ -2,14 +2,24 @@
     <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
 
     <!-- 로그 위치 -->
-    <property name="LOG_DIR" value="/var/log" />
-    <property name="LOG_PATH_NAME" value="${LOG_DIR}/access_log.log" />
+    <property name="LOG_DIR" value="/var/log/containers" />
+    <property name="LOG_PATH_NAME" value="${LOG_DIR}/access_log_test.log" />
 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH_NAME}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH_NAME}.%d{yyyyMMdd}</fileNamePattern>
+            <maxHistory>1</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%fullRequest%n%fullResponse</pattern>
+        </encoder>
+    </appender>
+<!--    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%fullRequest%n%n%fullResponse</pattern>
         </encoder>
-    </appender>
+    </appender>-->
 
-    <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
 </configuration>
